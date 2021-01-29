@@ -252,27 +252,6 @@
               
   <div class="section" id="pytorch-lightning-flash">
 <h1>Pytorch Lightning Flash<a class="headerlink" href="#pytorch-lightning-flash" title="Permalink to this headline">¶</a></h1>
-<p>Flash is a lightweight wrapper of <a class="reference external" href="https://github.com/PyTorchLightning/pytorch-lightning">Pytorch Lightning</a>, designed to make it
-super easy to apply common deep learning models to your own data.</p>
-<p>We seperate the developement process into 3 easy steps: data, model, and train:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flash.vision</span> <span class="kn">import</span> <span class="n">ImageClassifier</span><span class="p">,</span> <span class="n">ImageClassificationData</span>
-<span class="kn">from</span> <span class="nn">flash.text</span> <span class="kn">import</span> <span class="n">TextClassifier</span><span class="p">,</span> <span class="n">TextClassificationData</span>
-<span class="kn">from</span> <span class="nn">flash.tabular</span> <span class="kn">import</span> <span class="n">TabularClassifier</span><span class="p">,</span> <span class="n">TabularData</span>
-<span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
-
-<span class="c1"># Step 1: Data</span>
-<span class="n">data</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># pick from a variety of task specific datasets</span>
-
-<span class="c1"># Step 2: Task</span>
-<span class="n">model</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># pick our task specific model, built with all of the best practices</span>
-
-
-<span class="c1"># Step 3: Train</span>
-<span class="c1"># Train your model using PyTorchLightning, gaining access to all of its features like</span>
-<span class="c1"># multi-GPU training and even TPU support!</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-</pre></div>
-</div>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Get started:</span></p>
 <ul>
