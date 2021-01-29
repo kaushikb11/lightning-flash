@@ -1,0 +1,721 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Text Classification &mdash; Flash  documentation</title>
+  
+
+  
+  
+  
+  
+    <link rel="canonical" href="https://github.com/PyTorchLightning/lightning-flashreference/text_classification.html"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tabular Classification" href="tabular_classification.html" />
+    <link rel="prev" title="Image Classification" href="image_classification.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://pytorchlightning.github.io/lightning-flash/" aria-label="PyTorch">
+      <!--  <img class="call-to-action-img" src="../_static/images/logo-lightning-icon.png"/> -->
+      </a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash/quickstart.html">Get Started</a>
+          </li>
+
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash/">Blog</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch-lightning.readthedocs.io/en/latest/#tutorials">Tutorials</a>
+          </li>
+
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash">Docs</a>
+          </li>
+
+          <li>
+            <div class="resources-dropdown">
+              <a id="resourcesDropdownButton" data-toggle="resources-dropdown">
+                Resources
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="nav-dropdown-item" href="https://pytorchlightning.github.io/lightning-flash/"">
+                  <span class=dropdown-title>Developer Resources</span>
+                  <p>Find resources and get questions answered</p>
+                </a>
+                <!--
+                <a class="nav-dropdown-item" href="https://pytorchlightning.github.io/lightning-flash/">
+                  <span class=dropdown-title>About</span>
+                  <p>Learn about PyTorch’s features and capabilities</p>
+                </a>
+                -->
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <a href="https://github.com/PytorchLightning/lightning-flash">Github</a>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+
+  </div>
+</div>
+
+
+<body class="pytorch-body">
+
+   
+
+    
+
+    <div class="table-of-contents-link-wrapper">
+      <span>Table of Contents</span>
+      <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+    </div>
+
+    <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+      <div class="pytorch-side-scroll">
+        <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          <div class="pytorch-left-menu-search">
+            
+
+            
+              
+              
+            
+
+            
+
+
+  
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+            
+          </div>
+
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Get started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom_task.html">Custom tasks</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="image_classification.html">Image Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_classification.html#changing-the-backbone">Changing the backbone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_classification.html#api-reference">API reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Text Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tabular_classification.html">Tabular Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tabular_classification.html#api-reference">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Training from scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predictions.html">Predictions (inference)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <div class="pytorch-container">
+      <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+        <div class="pytorch-breadcrumbs-wrapper">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+          
+            Docs
+          
+        </a> &gt;
+      </li>
+
+        
+      <li>Text Classification</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/reference/text_classification.rst.txt" rel="nofollow"><img src="../_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+        </div>
+
+        <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+          Shortcuts
+        </div>
+      </div>
+
+      <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+        <div class="pytorch-content-left">
+
+        
+          
+          <div class="rst-content">
+          
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+             <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+              
+  <div class="section" id="text-classification">
+<span id="id1"></span><h1>Text Classification<a class="headerlink" href="#text-classification" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-task">
+<h2>The task<a class="headerlink" href="#the-task" title="Permalink to this headline">¶</a></h2>
+<p>Text classification is the task of assigning a piece of text (word, sentence or document) an appropriate class, or category. The categories depend on the chosen dataset and can range from topics. For example, we can use text classification to understand the sentiment of a given sentance- if it is positive or negative.</p>
+</div>
+<div class="section" id="inference">
+<h2>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">TextClassificatier</span></code> is already pre-trained on [IMDB](<a class="reference external" href="https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews">https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews</a>), a dataset of highly polarized movie reviews, trained for binary classification- to predict if a given review has a positive or negative sentiment.</p>
+<p>Use the <code class="xref py py-class docutils literal notranslate"><span class="pre">TextClassificatier</span></code> pretrained model for inference on any string sequence using <code class="xref py py-func docutils literal notranslate"><span class="pre">predict()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># import our libraries</span>
+    <span class="kn">from</span> <span class="nn">flash.text</span> <span class="kn">import</span> <span class="n">TextClassifier</span>
+
+
+    <span class="c1"># Load finetuned task from URL</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">TextClassifier</span><span class="o">.</span><span class="n">load_from_checkpoint</span><span class="p">(</span><span class="s2">&quot;https://flash-weights.s3.amazonaws.com/text_classification_model.pt&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 2. Perform inference from list of sequences</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span>
+        <span class="s2">&quot;Turgid dialogue, feeble characterization - Harvey Keitel a judge?.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;The worst movie in the history of cinema.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;I come from Bulgaria where it &#39;s almost impossible to have a tornado.&quot;</span>
+        <span class="s2">&quot;Very, very afraid&quot;</span>
+        <span class="s2">&quot;This guy has done a great job with this movie!&quot;</span><span class="p">,</span>
+    <span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or on a given dataset:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># import our libraries</span>
+
+    <span class="kn">from</span> <span class="nn">flash.core.data</span> <span class="kn">import</span> <span class="n">download_data</span>
+    <span class="kn">from</span> <span class="nn">flash.text</span> <span class="kn">import</span> <span class="n">TextClassifier</span>
+
+
+    <span class="c1"># 1. Download dataset, save it under &#39;data&#39; dir</span>
+    <span class="n">download_data</span><span class="p">(</span><span class="s2">&quot;https://pl-flash-data.s3.amazonaws.com/imdb.zip&quot;</span><span class="p">,</span> <span class="s1">&#39;data/&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 2. Load finetuned task</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">TextClassifier</span><span class="o">.</span><span class="n">load_from_checkpoint</span><span class="p">(</span><span class="s2">&quot;https://flash-weights.s3.amazonaws.com/text_classification_model.pt&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 3. Perform inference from a csv file</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="s2">&quot;data/imdb/test.csv&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For more advanced inference options, see <a class="reference internal" href="predictions.html#predictions"><span class="std std-ref">Predictions (inference)</span></a>.</p>
+</div>
+<div class="section" id="finetuning">
+<h2>Finetuning<a class="headerlink" href="#finetuning" title="Permalink to this headline">¶</a></h2>
+<p>Say you wanted to create a model that can predict whether a movie review is <strong>positive</strong> or <strong>negative</strong>. We will be using the IMDB dataset, that contains a <code class="docutils literal notranslate"><span class="pre">train.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">valid.csv</span></code>, structured like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">review</span><span class="p">,</span><span class="n">sentiment</span>
+<span class="s2">&quot;Japanese indie film with humor ... &quot;</span><span class="p">,</span><span class="n">positive</span>
+<span class="s2">&quot;Isaac Florentine has made some ...&quot;</span><span class="p">,</span><span class="n">negative</span>
+<span class="s2">&quot;After seeing the low-budget ...&quot;</span><span class="p">,</span><span class="n">negative</span>
+<span class="s2">&quot;I&#39;ve seen the original English version ...&quot;</span><span class="p">,</span><span class="n">positive</span>
+<span class="s2">&quot;Hunters chase what they think is a man through ...&quot;</span><span class="p">,</span><span class="n">negative</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>All we need is three lines of code to train our model!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># import our libraries</span>
+    <span class="kn">import</span> <span class="nn">flash</span>
+    <span class="kn">from</span> <span class="nn">flash.core.data</span> <span class="kn">import</span> <span class="n">download_data</span>
+    <span class="kn">from</span> <span class="nn">flash.text</span> <span class="kn">import</span> <span class="n">TextClassificationData</span><span class="p">,</span> <span class="n">TextClassifier</span>
+
+<span class="c1"># 1. Download data</span>
+<span class="n">download_data</span><span class="p">(</span><span class="s2">&quot;https://pl-flash-data.s3.amazonaws.com/imdb.zip&quot;</span><span class="p">,</span> <span class="s1">&#39;data/&#39;</span><span class="p">)</span>
+
+<span class="c1"># Organize the data</span>
+<span class="n">datamodule</span> <span class="o">=</span> <span class="n">TextClassificationData</span><span class="o">.</span><span class="n">from_files</span><span class="p">(</span>
+    <span class="n">train_file</span><span class="o">=</span><span class="s2">&quot;data/imdb/train.csv&quot;</span><span class="p">,</span>
+    <span class="n">valid_file</span><span class="o">=</span><span class="s2">&quot;data/imdb/valid.csv&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;review&quot;</span><span class="p">,</span>
+    <span class="n">target</span><span class="o">=</span><span class="s2">&quot;sentiment&quot;</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">512</span>
+<span class="p">)</span>
+
+<span class="c1"># 2. Build the task (using the defult backbone=&quot;bert-base-cased&quot;)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">TextClassifier</span><span class="p">(</span><span class="n">num_classes</span><span class="o">=</span><span class="n">datamodule</span><span class="o">.</span><span class="n">num_classes</span><span class="p">)</span>
+
+<span class="c1"># 4. Create trainer</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">flash</span><span class="o">.</span><span class="n">Trainer</span><span class="p">()</span>
+
+<span class="c1"># 5. Finetune the task</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">finetune</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">datamodule</span><span class="o">=</span><span class="n">datamodule</span><span class="p">,</span> <span class="n">unfreeze_milestones</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># 6. Save trainer task</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">save_checkpoint</span><span class="p">(</span><span class="s2">&quot;text_classification_model.pt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>To run the example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">flash_examples</span><span class="o">/</span><span class="n">finetuning</span><span class="o">/</span><span class="n">text_classification</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="changing-the-backbone">
+<h2>Changing the backbone<a class="headerlink" href="#changing-the-backbone" title="Permalink to this headline">¶</a></h2>
+<p>By default, we use the <a class="reference external" href="https://arxiv.org/abs/1810.04805">bert-base-uncased</a> model for text classification. You can change the model run by the task to any BERT model from <a class="reference external" href="https://huggingface.co/models">HuggingFace/transformers</a> by passing in a different backbone.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When changing the backbone, make sure you pass in the same backbone to the Task and the Data object!</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">datamodule</span> <span class="o">=</span> <span class="n">TextClassificationData</span><span class="o">.</span><span class="n">from_files</span><span class="p">(</span>
+    <span class="n">backbone</span><span class="o">=</span><span class="s2">&quot;bert-base-chinese&quot;</span><span class="p">,</span>
+    <span class="n">train_file</span><span class="o">=</span><span class="s2">&quot;data/imdb/train.csv&quot;</span><span class="p">,</span>
+    <span class="n">valid_file</span><span class="o">=</span><span class="s2">&quot;data/imdb/valid.csv&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;review&quot;</span><span class="p">,</span>
+    <span class="n">target</span><span class="o">=</span><span class="s2">&quot;sentiment&quot;</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">512</span>
+<span class="p">)</span>
+
+<span class="n">task</span> <span class="o">=</span> <span class="n">TextClassifier</span><span class="p">(</span><span class="n">backbone</span><span class="o">=</span><span class="s2">&quot;bert-base-chinese&quot;</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="n">datamodule</span><span class="o">.</span><span class="n">num_classes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="api-reference">
+<h2>API reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="textclassifier">
+<span id="text-classifier"></span><h2>TextClassifier<a class="headerlink" href="#textclassifier" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flash.text.classification.model.TextClassifier">
+<em class="property">class </em><code class="sig-prename descclassname">flash.text.classification.model.</code><code class="sig-name descname">TextClassifier</code><span class="sig-paren">(</span><em class="sig-param">num_classes, backbone='prajjwal1/bert-tiny', optimizer=&lt;class 'torch.optim.adam.Adam'&gt;, metrics=[Accuracy()], learning_rate=0.001</em><span class="sig-paren">)</span><a class="headerlink" href="#flash.text.classification.model.TextClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Task that classifies text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Number of classes to classify.</p></li>
+<li><p><strong>backbone</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – A model to use to compute text features can be any BERT model from HuggingFace/transformersimage .</p></li>
+<li><p><strong>optimizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Type" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code>]) – Optimizer to use for training, defaults to <cite>torch.optim.Adam</cite>.</p></li>
+<li><p><strong>metrics</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Mapping" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]) – Metrics to compute for training and evaluation.</p></li>
+<li><p><strong>learning_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Learning rate to use for training, defaults to <cite>1e-3</cite></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="flash.text.classification.model.TextClassifier.default_pipeline">
+<em class="property">static </em><code class="sig-name descname">default_pipeline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flash.text.classification.model.TextClassifier.default_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pipeline to use when there is no datamodule or it has not defined its pipeline</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flash.text.classification.model.TextClassifier.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">batch</span></em>, <em class="sig-param"><span class="n">batch_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flash.text.classification.model.TextClassifier.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>The training/validation/test step. Override for custom behavior.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="textclassificationdata">
+<span id="text-classification-data"></span><h2>TextClassificationData<a class="headerlink" href="#textclassificationdata" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="flash.text.classification.data.TextClassificationData">
+<em class="property">class </em><code class="sig-prename descclassname">flash.text.classification.data.</code><code class="sig-name descname">TextClassificationData</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">train_ds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">valid_ds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">test_ds</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">num_workers</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flash.text.classification.data.TextClassificationData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data module for text classification tasks.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flash.text.classification.data.TextClassificationData.from_files">
+<em class="property">classmethod </em><code class="sig-prename descclassname">TextClassificationData.</code><code class="sig-name descname">from_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">train_file</span></em>, <em class="sig-param"><span class="n">input</span></em>, <em class="sig-param"><span class="n">target</span></em>, <em class="sig-param"><span class="n">filetype</span><span class="o">=</span><span class="default_value">'csv'</span></em>, <em class="sig-param"><span class="n">backbone</span><span class="o">=</span><span class="default_value">'prajjwal1/bert-tiny'</span></em>, <em class="sig-param"><span class="n">valid_file</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">test_file</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_length</span><span class="o">=</span><span class="default_value">128</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="o">=</span><span class="default_value">16</span></em>, <em class="sig-param"><span class="n">num_workers</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flash.text.classification.data.TextClassificationData.from_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a TextClassificationData object from files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>train_file</strong> – Path to training data.</p></li>
+<li><p><strong>input</strong> – The field storing the text to be classified.</p></li>
+<li><p><strong>target</strong> – The field storing the class id of the associated text.</p></li>
+<li><p><strong>filetype</strong> – .csv or .json</p></li>
+<li><p><strong>backbone</strong> – tokenizer to use, can use any HuggingFace tokenizer.</p></li>
+<li><p><strong>valid_file</strong> – Path to validation data.</p></li>
+<li><p><strong>test_file</strong> – Path to test data.</p></li>
+<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – the batchsize to use for parallel loading. Defaults to 64.</p></li>
+<li><p><strong>num_workers</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) – The number of workers to use for parallelized loading.
+Defaults to None which equals the number of available CPU threads.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The constructed data module.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#flash.text.classification.data.TextClassificationData" title="flash.text.classification.data.TextClassificationData">TextClassificationData</a></p>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;train_data.csv&quot;</span><span class="p">)</span>
+<span class="n">tab_data</span> <span class="o">=</span> <span class="n">TabularData</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">train_df</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;fraud&quot;</span><span class="p">,</span>
+                               <span class="n">numerical_input</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;account_value&quot;</span><span class="p">],</span>
+                               <span class="n">categorical_input</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;account_type&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+             </article>
+             
+            </div>
+            <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tabular_classification.html" class="btn btn-neutral float-right" title="Tabular Classification" accesskey="n" rel="next">Next <img src="../_static/images/chevron-right-orange.svg" class="next-page"></a>
+      
+      
+        <a href="image_classification.html" class="btn btn-neutral" title="Image Classification" accesskey="p" rel="prev"><img src="../_static/images/chevron-right-orange.svg" class="previous-page"> Previous</a>
+      
+    </div>
+  
+
+  
+
+    <hr>
+
+  
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, PyTorch Lightning.
+
+    </p>
+  </div>
+    
+      <div>
+        Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+      </div>
+     
+
+</footer>
+
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">Text Classification</a><ul>
+<li><a class="reference internal" href="#the-task">The task</a></li>
+<li><a class="reference internal" href="#inference">Inference</a></li>
+<li><a class="reference internal" href="#finetuning">Finetuning</a></li>
+<li><a class="reference internal" href="#changing-the-backbone">Changing the backbone</a></li>
+<li><a class="reference internal" href="#api-reference">API reference</a></li>
+<li><a class="reference internal" href="#textclassifier">TextClassifier</a></li>
+<li><a class="reference internal" href="#textclassificationdata">TextClassificationData</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  
+
+
+  
+
+     
+       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+         <script src="../_static/jquery.js"></script>
+         <script src="../_static/underscore.js"></script>
+         <script src="../_static/doctools.js"></script>
+         <script src="../_static/copybutton.js"></script>
+     
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+    <div class="container">
+      <div class="row">
+        <!--
+        <div class="col-md-4 text-center">
+          <h2>Docs</h2>
+          <p>Access comprehensive developer documentation for PyTorch</p>
+          <a class="with-right-arrow" href="https://pytorchlightning.github.io/lightning-flash">View Docs</a>
+        </div>
+
+        <div class="col-md-4 text-center">
+          <h2>Tutorials</h2>
+          <p>Get in-depth tutorials for beginners and advanced developers</p>
+          <a class="with-right-arrow" href="https://pytorch-lightning.readthedocs.io/en/latest/#tutorials">View Tutorials</a>
+        </div>
+
+        <div class="col-md-4 text-center">
+          <h2>Resources</h2>
+          <p>Find development resources and get your questions answered</p>
+          <a class="with-right-arrow" href="https://pytorchlightning.github.io/lightning-flash/">View Resources</a>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-logo-wrapper">
+        <a href="https://pytorchlightning.github.io/lightning-flash/" class="footer-logo"></a>
+      </div>
+
+      <div class="footer-links-wrapper">
+        <div class="footer-links-col">
+          <ul>
+            <li class="list-title"><a href="https://pytorchlightning.github.io/lightning-flash/">PyTorch</a></li>
+            <li><a href="https://pytorchlightning.github.io/lightning-flash/quickstart.html">Get Started</a></li>
+            <li><a href="https://pytorchlightning.github.io/lightning-flash/">Features</a></li>
+            <li><a href="">Ecosystem</a></li>
+            <li><a href="https://pytorchlightning.github.io/lightning-flash/">Blog</a></li>
+            <li><a href="https://pytorchlightning.github.io/lightning-flash/">Resources</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <ul>
+            <li class="list-title"><a href="https://pytorchlightning.github.io/lightning-flash/">Support</a></li>
+            <li><a href="https://pytorch-lightning.readthedocs.io/en/latest/#tutorials">Tutorials</a></li>
+            <li><a href="https://pytorchlightning.github.io/lightning-flash">Docs</a></li>
+            <li><a href="https://pytorch-lightning.slack.com" target="_blank">Discuss</a></li>
+            <li><a href="https://github.com/PytorchLightning/lightning-flash/issues" target="_blank">Github Issues</a></li>
+            <li><a href="" target="_blank">Slack</a></li>
+            <li><a href="https://github.com/PytorchLightning/pytorch-lightning/blob/master/CONTRIBUTING.md" target="_blank">Contributing</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col follow-us-col">
+          <ul>
+            <li class="list-title">Follow Us</li>
+            <li>
+              <div id="mc_embed_signup">
+                <form
+                  action="https://twitter.us14.list-manage.com/subscribe/post?u=75419c71fe0a935e53dfa4a3f&id=91d0dccd39"
+                  method="post"
+                  id="mc-embedded-subscribe-form"
+                  name="mc-embedded-subscribe-form"
+                  class="email-subscribe-form validate"
+                  target="_blank"
+                  novalidate>
+                  <div id="mc_embed_signup_scroll" class="email-subscribe-form-fields-wrapper">
+                    <div class="mc-field-group">
+                      <label for="mce-EMAIL" style="display:none;">Email Address</label>
+                      <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Email Address">
+                    </div>
+
+                    <div id="mce-responses" class="clear">
+                      <div class="response" id="mce-error-response" style="display:none"></div>
+                      <div class="response" id="mce-success-response" style="display:none"></div>
+                    </div>
+
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_75419c71fe0a935e53dfa4a3f_91d0dccd39" tabindex="-1" value=""></div>
+
+                    <div class="clear">
+                      <input type="submit" value="" name="subscribe" id="mc-embedded-subscribe" class="button email-subscribe-button">
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </li>
+          </ul>
+
+          <div class="footer-social-icons">
+            <a href="" target="_blank" class="facebook"></a>
+            <a href="https://twitter.com/PyTorchLightnin" target="_blank" class="twitter"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  -->
+
+  <div class="cookie-banner-wrapper">
+  <div class="container">
+    <p class="gdpr-notice">To analyze traffic and optimize your experience, we serve cookies on this site. By clicking or navigating, you agree to allow our usage of cookies. As the current maintainers of this site, Facebook’s Cookies Policy applies. Learn more, including about available controls: <a href="https://www.facebook.com/policies/cookies/">Cookies Policy</a>.</p>
+    <img class="close-button" src="../_static/images/pytorch-x.svg">
+  </div>
+</div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://pytorchlightning.github.io/lightning-flash/" aria-label="PyTorch Lightning"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash/quickstart.html">Get Started</a>
+          </li>
+
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash/">Features</a>
+          </li>
+
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash/">Blog</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch-lightning.readthedocs.io/en/latest/#tutorials">Tutorials</a>
+          </li>
+
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash">Docs</a>
+          </li>
+
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash/">Resources</a>
+          </li>
+
+          <li>
+            <a href="https://github.com/PytorchLightning/lightning-flash">Github</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function(e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,812 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quick Start &mdash; Flash  documentation</title>
+  
+
+  
+  
+  
+  
+    <link rel="canonical" href="https://github.com/PyTorchLightning/lightning-flashquickstart.html"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="_static/pygments.css" type="text/css" /> -->
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Pytorch Lightning Flash" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://pytorchlightning.github.io/lightning-flash/" aria-label="PyTorch">
+      <!--  <img class="call-to-action-img" src="_static/images/logo-lightning-icon.png"/> -->
+      </a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash/quickstart.html">Get Started</a>
+          </li>
+
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash/">Blog</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch-lightning.readthedocs.io/en/latest/#tutorials">Tutorials</a>
+          </li>
+
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash">Docs</a>
+          </li>
+
+          <li>
+            <div class="resources-dropdown">
+              <a id="resourcesDropdownButton" data-toggle="resources-dropdown">
+                Resources
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="nav-dropdown-item" href="https://pytorchlightning.github.io/lightning-flash/"">
+                  <span class=dropdown-title>Developer Resources</span>
+                  <p>Find resources and get questions answered</p>
+                </a>
+                <!--
+                <a class="nav-dropdown-item" href="https://pytorchlightning.github.io/lightning-flash/">
+                  <span class=dropdown-title>About</span>
+                  <p>Learn about PyTorch’s features and capabilities</p>
+                </a>
+                -->
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <a href="https://github.com/PytorchLightning/lightning-flash">Github</a>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+
+  </div>
+</div>
+
+
+<body class="pytorch-body">
+
+   
+
+    
+
+    <div class="table-of-contents-link-wrapper">
+      <span>Table of Contents</span>
+      <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+    </div>
+
+    <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+      <div class="pytorch-side-scroll">
+        <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          <div class="pytorch-left-menu-search">
+            
+
+            
+              
+              
+            
+
+            
+
+
+  
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+            
+          </div>
+
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Get started:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_task.html">Custom tasks</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reference/image_classification.html">Image Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/image_classification.html#changing-the-backbone">Changing the backbone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/image_classification.html#api-reference">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/text_classification.html">Text Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/tabular_classification.html">Tabular Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/tabular_classification.html#api-reference">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/training.html">Training from scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/predictions.html">Predictions (inference)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <div class="pytorch-container">
+      <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+        <div class="pytorch-breadcrumbs-wrapper">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="index.html">
+          
+            Docs
+          
+        </a> &gt;
+      </li>
+
+        
+      <li>Quick Start</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="_sources/quickstart.rst.txt" rel="nofollow"><img src="_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+        </div>
+
+        <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+          Shortcuts
+        </div>
+      </div>
+
+      <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+        <div class="pytorch-content-left">
+
+        
+          
+          <div class="rst-content">
+          
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+             <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+              
+  <div class="section" id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<p>Flash is a toolkit to solve deep learning challanges using the latest state-of-the-art models in just a few lines of code. You can use Flash to finetune on you own data, generate embeddings, etc.</p>
+<p>Flash is built on top of <a class="reference external" href="https://github.com/PyTorchLightning/pytorch-lightning">Pytorch Lightning</a>, a powerful deep learning research framework for training models at scale. With the power of Lightning, you can train your flash tasks on any hardware: CPUs, GPUs or TPUs without any code changes.</p>
+<p>Continue reading to train your deep learning models in a flash!</p>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+<p>You can install flash using pip:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install pytorch-lightning-flash
+</pre></div>
+</div>
+</div>
+<div class="section" id="quick-inference">
+<h2>Quick Inference<a class="headerlink" href="#quick-inference" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import our libraries</span>
+<span class="kn">from</span> <span class="nn">flash.text</span> <span class="kn">import</span> <span class="n">TextClassifier</span>
+
+
+<span class="c1"># Load finetuned task</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">ImageClassifier</span><span class="o">.</span><span class="n">load_from_checkpoint</span><span class="p">(</span><span class="s2">&quot;https://flash-weights.s3.amazonaws.com/image_classification_model.pt&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Perform inference from list of sequences</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span>
+    <span class="s2">&quot;Turgid dialogue, feeble characterization - Harvey Keitel a judge?.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The worst movie in the history of cinema.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;I come from Bulgaria where it &#39;s almost impossible to have a tornado.&quot;</span>
+    <span class="s2">&quot;Very, very afraid&quot;</span>
+    <span class="s2">&quot;This guy has done a great job with this movie!&quot;</span><span class="p">,</span>
+<span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="finetune">
+<h2>Finetune<a class="headerlink" href="#finetune" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">flash</span>
+<span class="kn">from</span> <span class="nn">flash.core.data</span> <span class="kn">import</span> <span class="n">download_data</span>
+<span class="kn">from</span> <span class="nn">flash.vision</span> <span class="kn">import</span> <span class="n">ImageClassificationData</span><span class="p">,</span> <span class="n">ImageClassifier</span>
+
+
+<span class="c1"># 1. Download the data</span>
+<span class="n">download_data</span><span class="p">(</span><span class="s2">&quot;https://pl-flash-data.s3.amazonaws.com/hymenoptera_data.zip&quot;</span><span class="p">,</span> <span class="s1">&#39;data/&#39;</span><span class="p">)</span>
+
+<span class="c1"># 2. Load the data</span>
+<span class="n">datamodule</span> <span class="o">=</span> <span class="n">ImageClassificationData</span><span class="o">.</span><span class="n">from_folders</span><span class="p">(</span>
+    <span class="n">backbone</span><span class="o">=</span><span class="s2">&quot;resnet18&quot;</span><span class="p">,</span>
+    <span class="n">train_folder</span><span class="o">=</span><span class="s2">&quot;data/hymenoptera_data/train/&quot;</span><span class="p">,</span>
+    <span class="n">valid_folder</span><span class="o">=</span><span class="s2">&quot;data/hymenoptera_data/val/&quot;</span><span class="p">,</span>
+    <span class="n">test_folder</span><span class="o">=</span><span class="s2">&quot;data/hymenoptera_data/test/&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># 3. Build the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">ImageClassifier</span><span class="p">(</span><span class="n">num_classes</span><span class="o">=</span><span class="n">datamodule</span><span class="o">.</span><span class="n">num_classes</span><span class="p">)</span>
+
+<span class="c1"># 4. Create the trainer. Run once on data</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">flash</span><span class="o">.</span><span class="n">Trainer</span><span class="p">(</span><span class="n">max_epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 5. Train the model</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">finetune</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">datamodule</span><span class="o">=</span><span class="n">datamodule</span><span class="p">,</span> <span class="n">unfreeze_milestones</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># 6. Test the model</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
+
+<span class="c1"># 7. Save it!</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">save_checkpoint</span><span class="p">(</span><span class="s2">&quot;image_classification_model.pt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="train">
+<h2>Train<a class="headerlink" href="#train" title="Permalink to this headline">¶</a></h2>
+<p>Tasks let you focus on solving applied problems without any of the boilerplate. Here’s a built-in
+task that works for 99% of machine learning problems that data scientists, kagglers and practicioners
+encounter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">flash</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span><span class="p">,</span> <span class="n">optim</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">random_split</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span><span class="p">,</span> <span class="n">datasets</span>
+<span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+
+<span class="c1"># model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span> <span class="o">*</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># data</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s1">&#39;./data_folder&#39;</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">())</span>
+<span class="n">train</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">random_split</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="p">[</span><span class="mi">55000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">])</span>
+
+<span class="c1"># task</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">flash</span><span class="o">.</span><span class="n">Task</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">loss_fn</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">)</span>
+
+<span class="c1"># train</span>
+<span class="n">flash</span><span class="o">.</span><span class="n">Trainer</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train</span><span class="p">),</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="customize">
+<h2>Customize<a class="headerlink" href="#customize" title="Permalink to this headline">¶</a></h2>
+<p>Tasks can be built in just a few minutes because Flash is built on top of PyTorch Lightning LightningModules, which
+are infinitely extensible and let you train across GPUs, TPUs etc without doing any code changes.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="image-classification">
+<h2>Image Classification<a class="headerlink" href="#image-classification" title="Permalink to this headline">¶</a></h2>
+<p>Flash has an ImageClassification task to tackle any image classification problem.
+To illustrate, Let’s say we wanted to develop a model that could classify between <strong>ants</strong> and <strong>bees</strong>.
+We only need a <code class="docutils literal notranslate"><span class="pre">train</span></code> and <code class="docutils literal notranslate"><span class="pre">validation</span></code> folder, each with examples of images of ants and bees like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>hymenoptera_data
+├── train
+│   ├── ants
+│   │   ├── 0013035.jpg
+│   │   ├── 1030023514_aad5c608f9.jpg
+│   │   ...
+│   └── bees
+│       ├── 1092977343_cb42b38d62.jpg
+│       ├── 1093831624_fb5fbe2308.jpg
+│       ...
+└── val
+    ├── ants
+    │   ├── 10308379_1b6c72e180.jpg
+    │   ├── 1053149811_f62a3410d3.jpg
+    │   ...
+    └── bees
+        ├── 1032546534_06907fe3b3.jpg
+        ├── 10870992_eebeeb3a12.jpg
+        ...
+</pre></div>
+</div>
+<p>Now all we need is three lines of code to build and train our model!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flash.vision</span> <span class="kn">import</span> <span class="n">ImageClassifier</span><span class="p">,</span> <span class="n">ImageClassificationData</span>
+<span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">from</span> <span class="nn">flash.core.data</span> <span class="kn">import</span> <span class="n">download_data</span>
+
+<span class="c1"># download data</span>
+<span class="n">download_data</span><span class="p">(</span><span class="s2">&quot;https://download.pytorch.org/tutorial/hymenoptera_data.zip&quot;</span><span class="p">,</span> <span class="s1">&#39;data/&#39;</span><span class="p">)</span>
+
+<span class="c1"># 1. organize our data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ImageClassificationData</span><span class="o">.</span><span class="n">from_folders</span><span class="p">(</span>
+    <span class="n">train_folder</span><span class="o">=</span><span class="s2">&quot;data/hymenoptera_data/train/&quot;</span><span class="p">,</span>
+    <span class="n">valid_folder</span><span class="o">=</span><span class="s2">&quot;data/hymenoptera_data/val/&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># 2. build our model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">ImageClassifier</span><span class="p">(</span><span class="n">backbone</span><span class="o">=</span><span class="s2">&quot;resnet18&quot;</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># 3. train!</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To run the example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">flash_examples</span><span class="o">/</span><span class="n">torchvision_classifier</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="text-classification">
+<h2>Text Classification<a class="headerlink" href="#text-classification" title="Permalink to this headline">¶</a></h2>
+<p>Flash has a TextClassification task to tackle any text classification problem.
+To illustrate, say you wanted to classify movie reviews as <strong>positive</strong> or <strong>negative</strong>. From a <code class="docutils literal notranslate"><span class="pre">train.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">valid.csv</span></code>, structured like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">review</span><span class="p">,</span><span class="n">sentiment</span>
+<span class="s2">&quot;Japanese indie film with humor ... &quot;</span><span class="p">,</span><span class="n">positive</span>
+<span class="s2">&quot;Isaac Florentine has made some ...&quot;</span><span class="p">,</span><span class="n">negative</span>
+<span class="s2">&quot;After seeing the low-budget ...&quot;</span><span class="p">,</span><span class="n">negative</span>
+<span class="s2">&quot;I&#39;ve seen the original English version ...&quot;</span><span class="p">,</span><span class="n">positive</span>
+<span class="s2">&quot;Hunters chase what they think is a man through ...&quot;</span><span class="p">,</span><span class="n">negative</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Once again, all we need is three lines of code to train our model!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flash.text</span> <span class="kn">import</span> <span class="n">TextClassifier</span><span class="p">,</span> <span class="n">TextClassificationData</span>
+<span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">from</span> <span class="nn">flash.core.data</span> <span class="kn">import</span> <span class="n">download_data</span>
+
+<span class="c1"># download data</span>
+<span class="n">download_data</span><span class="p">(</span><span class="s2">&quot;https://pl-flash-data.s3.amazonaws.com/imdb.zip&quot;</span><span class="p">,</span> <span class="s1">&#39;data/&#39;</span><span class="p">)</span>
+
+<span class="c1"># build our model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">TextClassifier</span><span class="p">(</span><span class="n">backbone</span><span class="o">=</span><span class="s2">&quot;bert-base-cased&quot;</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># structure our data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">TextClassificationData</span><span class="o">.</span><span class="n">from_files</span><span class="p">(</span>
+    <span class="n">backbone</span><span class="o">=</span><span class="s2">&quot;bert-base-cased&quot;</span><span class="p">,</span>
+    <span class="n">train_file</span><span class="o">=</span><span class="s2">&quot;data/imdb/train.csv&quot;</span><span class="p">,</span>
+    <span class="n">valid_file</span><span class="o">=</span><span class="s2">&quot;data/imdb/valid.csv&quot;</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;review&quot;</span><span class="p">,</span>
+    <span class="n">target</span><span class="o">=</span><span class="s2">&quot;sentiment&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># train</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To run the example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">flash_examples</span><span class="o">/</span><span class="n">text_classification</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="tabular-classification">
+<h2>Tabular Classification<a class="headerlink" href="#tabular-classification" title="Permalink to this headline">¶</a></h2>
+<p>Flash has a TabularClassification task to tackle any tabular classification problem.
+To illustrate, say we want to build a model to predict if a passenger survived on the
+Titanic. Once again we can organize our data in <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files
+(exportable from Excel):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PassengerId</span><span class="p">,</span><span class="n">Survived</span><span class="p">,</span><span class="n">Pclass</span><span class="p">,</span><span class="n">Name</span><span class="p">,</span><span class="n">Sex</span><span class="p">,</span><span class="n">Age</span><span class="p">,</span><span class="n">SibSp</span><span class="p">,</span><span class="n">Parch</span><span class="p">,</span><span class="n">Ticket</span><span class="p">,</span><span class="n">Fare</span><span class="p">,</span><span class="n">Cabin</span><span class="p">,</span><span class="n">Embarked</span>
+<span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s2">&quot;Braund, Mr. Owen Harris&quot;</span><span class="p">,</span><span class="n">male</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">A</span><span class="o">/</span><span class="mi">5</span> <span class="mi">21171</span><span class="p">,</span><span class="mf">7.25</span><span class="p">,,</span><span class="n">S</span>
+<span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s2">&quot;Heikkinen, Miss. Laina&quot;</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">26</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">STON</span><span class="o">/</span><span class="n">O2</span><span class="o">.</span> <span class="mi">3101282</span><span class="p">,</span><span class="mf">7.925</span><span class="p">,,</span><span class="n">S</span>
+<span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s2">&quot;Allen, Mr. William Henry&quot;</span><span class="p">,</span><span class="n">male</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">373450</span><span class="p">,</span><span class="mf">8.05</span><span class="p">,,</span><span class="n">S</span>
+<span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s2">&quot;Moran, Mr. James&quot;</span><span class="p">,</span><span class="n">male</span><span class="p">,,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">330877</span><span class="p">,</span><span class="mf">8.4583</span><span class="p">,,</span><span class="n">Q</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>And now we train:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flash.tabular</span> <span class="kn">import</span> <span class="n">TabularClassifier</span><span class="p">,</span> <span class="n">TabularData</span>
+<span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">flash.core.data</span> <span class="kn">import</span> <span class="n">download_data</span>
+
+<span class="c1"># download data</span>
+<span class="n">download_data</span><span class="p">(</span><span class="s2">&quot;https://pl-flash-data.s3.amazonaws.com/titanic.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;titanic.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># structure data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">TabularData</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;titanic.csv&quot;</span><span class="p">),</span>
+    <span class="n">categorical_input</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Sex&quot;</span><span class="p">,</span> <span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="s2">&quot;SibSp&quot;</span><span class="p">,</span> <span class="s2">&quot;Parch&quot;</span><span class="p">,</span> <span class="s2">&quot;Ticket&quot;</span><span class="p">,</span> <span class="s2">&quot;Cabin&quot;</span><span class="p">,</span> <span class="s2">&quot;Embarked&quot;</span><span class="p">],</span>
+    <span class="n">numerical_input</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Fare&quot;</span><span class="p">],</span>
+    <span class="n">target</span><span class="o">=</span><span class="s2">&quot;Survived&quot;</span><span class="p">,</span>
+    <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">8</span>
+<span class="p">)</span>
+
+<span class="c1"># build model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">TabularClassifier</span><span class="p">(</span>
+    <span class="n">num_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">num_columns</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">embedding_sizes</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">emb_sizes</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To run the example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">flash_examples</span><span class="o">/</span><span class="n">tabular_data</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="task-for-99-of-ml-problems">
+<h2>Task for 99% of ML problems<a class="headerlink" href="#task-for-99-of-ml-problems" title="Permalink to this headline">¶</a></h2>
+<p>The Task can be used to tackle the majority of machine learning problems data scientists encounter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flash.model</span> <span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span><span class="p">,</span> <span class="n">optim</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">random_split</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span><span class="p">,</span> <span class="n">datasets</span>
+<span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+
+<span class="c1"># model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span> <span class="o">*</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># data</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s1">&#39;./data_folder&#39;</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">())</span>
+<span class="n">train</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">random_split</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="p">[</span><span class="mi">55000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">])</span>
+
+<span class="c1"># task</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">Task</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">loss_fn</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">)</span>
+
+<span class="c1"># train</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train</span><span class="p">),</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-tasks">
+<h2>Other tasks<a class="headerlink" href="#other-tasks" title="Permalink to this headline">¶</a></h2>
+<p>The lightning + Flash team is hard at work building more tasks for common deep-learning use cases.
+But we’re looking for incredible contributors like you to submit new tasks!</p>
+<p>Join our <a class="reference external" href="https://join.slack.com/t/pytorch-lightning/shared_invite/zt-f6bl2l0l-JYMK3tbAgAmGRrlNr00f1A">Slack</a> to get help becoming a contributor!</p>
+</div>
+</div>
+
+
+             </article>
+             
+            </div>
+            <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <img src="_static/images/chevron-right-orange.svg" class="next-page"></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Pytorch Lightning Flash" accesskey="p" rel="prev"><img src="_static/images/chevron-right-orange.svg" class="previous-page"> Previous</a>
+      
+    </div>
+  
+
+  
+
+    <hr>
+
+  
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020-2021, PyTorch Lightning.
+
+    </p>
+  </div>
+    
+      <div>
+        Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+      </div>
+     
+
+</footer>
+
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">Quick Start</a><ul>
+<li><a class="reference internal" href="#install">Install</a></li>
+<li><a class="reference internal" href="#quick-inference">Quick Inference</a></li>
+<li><a class="reference internal" href="#finetune">Finetune</a></li>
+<li><a class="reference internal" href="#train">Train</a></li>
+<li><a class="reference internal" href="#customize">Customize</a></li>
+<li><a class="reference internal" href="#image-classification">Image Classification</a></li>
+<li><a class="reference internal" href="#text-classification">Text Classification</a></li>
+<li><a class="reference internal" href="#tabular-classification">Tabular Classification</a></li>
+<li><a class="reference internal" href="#task-for-99-of-ml-problems">Task for 99% of ML problems</a></li>
+<li><a class="reference internal" href="#other-tasks">Other tasks</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  
+
+
+  
+
+     
+       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+         <script src="_static/jquery.js"></script>
+         <script src="_static/underscore.js"></script>
+         <script src="_static/doctools.js"></script>
+         <script src="_static/copybutton.js"></script>
+     
+
+  
+
+  <script type="text/javascript" src="_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="_static/js/vendor/bootstrap.min.js"></script>
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+    <div class="container">
+      <div class="row">
+        <!--
+        <div class="col-md-4 text-center">
+          <h2>Docs</h2>
+          <p>Access comprehensive developer documentation for PyTorch</p>
+          <a class="with-right-arrow" href="https://pytorchlightning.github.io/lightning-flash">View Docs</a>
+        </div>
+
+        <div class="col-md-4 text-center">
+          <h2>Tutorials</h2>
+          <p>Get in-depth tutorials for beginners and advanced developers</p>
+          <a class="with-right-arrow" href="https://pytorch-lightning.readthedocs.io/en/latest/#tutorials">View Tutorials</a>
+        </div>
+
+        <div class="col-md-4 text-center">
+          <h2>Resources</h2>
+          <p>Find development resources and get your questions answered</p>
+          <a class="with-right-arrow" href="https://pytorchlightning.github.io/lightning-flash/">View Resources</a>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-logo-wrapper">
+        <a href="https://pytorchlightning.github.io/lightning-flash/" class="footer-logo"></a>
+      </div>
+
+      <div class="footer-links-wrapper">
+        <div class="footer-links-col">
+          <ul>
+            <li class="list-title"><a href="https://pytorchlightning.github.io/lightning-flash/">PyTorch</a></li>
+            <li><a href="https://pytorchlightning.github.io/lightning-flash/quickstart.html">Get Started</a></li>
+            <li><a href="https://pytorchlightning.github.io/lightning-flash/">Features</a></li>
+            <li><a href="">Ecosystem</a></li>
+            <li><a href="https://pytorchlightning.github.io/lightning-flash/">Blog</a></li>
+            <li><a href="https://pytorchlightning.github.io/lightning-flash/">Resources</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <ul>
+            <li class="list-title"><a href="https://pytorchlightning.github.io/lightning-flash/">Support</a></li>
+            <li><a href="https://pytorch-lightning.readthedocs.io/en/latest/#tutorials">Tutorials</a></li>
+            <li><a href="https://pytorchlightning.github.io/lightning-flash">Docs</a></li>
+            <li><a href="https://pytorch-lightning.slack.com" target="_blank">Discuss</a></li>
+            <li><a href="https://github.com/PytorchLightning/lightning-flash/issues" target="_blank">Github Issues</a></li>
+            <li><a href="" target="_blank">Slack</a></li>
+            <li><a href="https://github.com/PytorchLightning/pytorch-lightning/blob/master/CONTRIBUTING.md" target="_blank">Contributing</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col follow-us-col">
+          <ul>
+            <li class="list-title">Follow Us</li>
+            <li>
+              <div id="mc_embed_signup">
+                <form
+                  action="https://twitter.us14.list-manage.com/subscribe/post?u=75419c71fe0a935e53dfa4a3f&id=91d0dccd39"
+                  method="post"
+                  id="mc-embedded-subscribe-form"
+                  name="mc-embedded-subscribe-form"
+                  class="email-subscribe-form validate"
+                  target="_blank"
+                  novalidate>
+                  <div id="mc_embed_signup_scroll" class="email-subscribe-form-fields-wrapper">
+                    <div class="mc-field-group">
+                      <label for="mce-EMAIL" style="display:none;">Email Address</label>
+                      <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Email Address">
+                    </div>
+
+                    <div id="mce-responses" class="clear">
+                      <div class="response" id="mce-error-response" style="display:none"></div>
+                      <div class="response" id="mce-success-response" style="display:none"></div>
+                    </div>
+
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_75419c71fe0a935e53dfa4a3f_91d0dccd39" tabindex="-1" value=""></div>
+
+                    <div class="clear">
+                      <input type="submit" value="" name="subscribe" id="mc-embedded-subscribe" class="button email-subscribe-button">
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </li>
+          </ul>
+
+          <div class="footer-social-icons">
+            <a href="" target="_blank" class="facebook"></a>
+            <a href="https://twitter.com/PyTorchLightnin" target="_blank" class="twitter"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  -->
+
+  <div class="cookie-banner-wrapper">
+  <div class="container">
+    <p class="gdpr-notice">To analyze traffic and optimize your experience, we serve cookies on this site. By clicking or navigating, you agree to allow our usage of cookies. As the current maintainers of this site, Facebook’s Cookies Policy applies. Learn more, including about available controls: <a href="https://www.facebook.com/policies/cookies/">Cookies Policy</a>.</p>
+    <img class="close-button" src="_static/images/pytorch-x.svg">
+  </div>
+</div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://pytorchlightning.github.io/lightning-flash/" aria-label="PyTorch Lightning"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash/quickstart.html">Get Started</a>
+          </li>
+
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash/">Features</a>
+          </li>
+
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash/">Blog</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch-lightning.readthedocs.io/en/latest/#tutorials">Tutorials</a>
+          </li>
+
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash">Docs</a>
+          </li>
+
+          <li>
+            <a href="https://pytorchlightning.github.io/lightning-flash/">Resources</a>
+          </li>
+
+          <li>
+            <a href="https://github.com/PytorchLightning/lightning-flash">Github</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function(e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+</html>
